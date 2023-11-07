@@ -1,0 +1,598 @@
+{
+	"info": {
+		"_postman_id": "c68f4fc9-3cb6-4030-a254-8f2df196887f",
+		"name": "Ensek QA tech test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27054755",
+		"_collection_link": "https://www.postman.com/solar-eclipse-629957/workspace/team-workspace/collection/27054755-c68f4fc9-3cb6-4030-a254-8f2df196887f?action=share&source=collection_link&creator=27054755"
+	},
+	"item": [
+		{
+			"name": "Auth token",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "reset orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "Auth token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://qacandidatetest.ensek.io/ENSEK/reset",
+					"protocol": "https",
+					"host": [
+						"qacandidatetest",
+						"ensek",
+						"io"
+					],
+					"path": [
+						"ENSEK",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buy Gas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"//var jsonString = JSON.stringify(result).substring(106,142);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Buy Gas\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var result = jsonData.result;\r",
+							"    var jsonString = JSON.stringify(result).substring(106,142);\r",
+							"    pm.environment.set(\"GASGUID\", jsonString);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "id",
+						"value": "1",
+						"description": "Gas id",
+						"type": "text"
+					},
+					{
+						"key": "qunatity",
+						"value": "10",
+						"description": "ammount",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://qacandidatetest.ensek.io/ENSEK/buy/1/10",
+					"protocol": "https",
+					"host": [
+						"qacandidatetest",
+						"ensek",
+						"io"
+					],
+					"path": [
+						"ENSEK",
+						"buy",
+						"1",
+						"10"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buy Nuclear",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "id",
+						"value": "1",
+						"description": "Gas id",
+						"type": "text"
+					},
+					{
+						"key": "qunatity",
+						"value": "10",
+						"description": "ammount",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://qacandidatetest.ensek.io/ENSEK/buy/2/10",
+					"protocol": "https",
+					"host": [
+						"qacandidatetest",
+						"ensek",
+						"io"
+					],
+					"path": [
+						"ENSEK",
+						"buy",
+						"2",
+						"10"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buy Electric",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "id",
+						"value": "1",
+						"description": "Gas id",
+						"type": "text"
+					},
+					{
+						"key": "qunatity",
+						"value": "10",
+						"description": "ammount",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://qacandidatetest.ensek.io/ENSEK/buy/3/10",
+					"protocol": "https",
+					"host": [
+						"qacandidatetest",
+						"ensek",
+						"io"
+					],
+					"path": [
+						"ENSEK",
+						"buy",
+						"3",
+						"10"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buy Oil",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "id",
+						"value": "1",
+						"description": "Gas id",
+						"type": "text"
+					},
+					{
+						"key": "qunatity",
+						"value": "10",
+						"description": "ammount",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://qacandidatetest.ensek.io/ENSEK/buy/4/10",
+					"protocol": "https",
+					"host": [
+						"qacandidatetest",
+						"ensek",
+						"io"
+					],
+					"path": [
+						"ENSEK",
+						"buy",
+						"4",
+						"10"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"1cd1b3e9-1627-4ab9-8028-b9651d74cbb2\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"1fcec6de-358d-4fb0-b087-9d69ceb39a11\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"8e9633c2-50db-45d3-9e42-a7315965dea4\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://qacandidatetest.ensek.io/ENSEK/orders",
+					"protocol": "https",
+					"host": [
+						"qacandidatetest",
+						"ensek",
+						"io"
+					],
+					"path": [
+						"ENSEK",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "Auth token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://qacandidatetest.ensek.io/ENSEK/orders/72871fc6-af0c-484a-8231-60427df49e0b",
+					"protocol": "https",
+					"host": [
+						"qacandidatetest",
+						"ensek",
+						"io"
+					],
+					"path": [
+						"ENSEK",
+						"orders",
+						"72871fc6-af0c-484a-8231-60427df49e0b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific order by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5OTM2MjgxMCwianRpIjoiZmQwNjMzODctMWNjNy00NjAwLWI0NWYtMjI2YTJhNmViZDA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InRlc3QiLCJuYmYiOjE2OTkzNjI4MTAsImV4cCI6MTY5OTM2MzcxMCwicGFzc3dvcmQiOiJ0ZXN0aW5nIn0.HdnTntPj60ld2xiNP8l-Q7jIO_33p64PZ9uHaEsfZWk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://qacandidatetest.ensek.io/ENSEK/orders/79c223ca-12fe-447b-8aa2-56b6c214edf0",
+					"protocol": "https",
+					"host": [
+						"qacandidatetest",
+						"ensek",
+						"io"
+					],
+					"path": [
+						"ENSEK",
+						"orders",
+						"79c223ca-12fe-447b-8aa2-56b6c214edf0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "tokenName",
+				"value": "Auth02",
+				"type": "string"
+			},
+			{
+				"key": "tokenType",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "accessToken",
+				"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5OTM0MzkyOCwianRpIjoiNGQzNDhlY2QtMTMzMS00OTU5LWFjNzItYTM1MjA5MjVhMTU0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InRlc3QiLCJuYmYiOjE2OTkzNDM5MjgsImV4cCI6MTY5OTM0NDgyOCwicGFzc3dvcmQiOiJ0ZXN0aW5nIn0.6yze1XHYdfwzNtQtAxM5A_a9cfMHy8azJFhUiMxUGoo",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "testing",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "test",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://qacandidatetest.ensek.io/ENSEK/login",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "password_credentials",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response time is less than 200ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(200);",
+					"});"
+				]
+			}
+		}
+	]
+}
